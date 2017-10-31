@@ -6,6 +6,6 @@ compiler:
 install:
   - sudo apt-get update -qq
   - sudo apt-get install gcc-multilib python-pip cmake
-  - sudo pip conan conan_package_tools
+  - sudo pip install conan conan_package_tools
 script:
   - python build.py
