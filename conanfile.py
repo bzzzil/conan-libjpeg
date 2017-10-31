@@ -51,8 +51,14 @@ class libjpegConan(ConanFile):
                     old_str = '-install_name $libdir/$SHAREDLIBM'
                     new_str = '-install_name $SHAREDLIBM'
                     tools.replace_in_file("./configure", old_str, new_str)
+                confArgs = []
+                if self.options.shared:
+                    confArgs.append("--enable-shared=yes --enable-static=no")
+                else:
+                    confArgs.append("--enable-shared=no --enable-static=yes")
 
-                env_build.configure("./", build=False, host=False, target=False)
+
+                env_build.configure("./", args=confArgs, build=False, host=False, target=False)
                 env_build.make()
             else:
                 files.mkdir("_build")
@@ -71,9 +77,10 @@ class libjpegConan(ConanFile):
 
         # Copying static and dynamic libs
         if self.settings.os == "Windows":
-            self.copy(pattern="libjpegd.lib", dst="lib", src="build/lib", keep_path=False)
+            self.copy(pattern="libjpeg.lib", dst="lib", src="build/lib", keep_path=False)
             self.copy(pattern="libjpeg.lib", dst="lib", src="build/lib", keep_path=False)
         else:
+            self.copy(pattern="*.so", dst="lib", src="%s/.libs" % self.LIBJPEG_FOLDER_NAME, keep_path=False)
             self.copy(pattern="*.a", dst="lib", src="%s/.libs" % self.LIBJPEG_FOLDER_NAME, keep_path=False)
 
     def package_info(self):
@@ -84,6 +91,6 @@ class libjpegConan(ConanFile):
                 self.cpp_info.libs = ['libjpeg']
         else:
             if self.settings.build_type == "Debug":
-                self.cpp_info.libs = ['jpegd']
+                self.cpp_info.libs = ['jpeg']
             else:
                 self.cpp_info.libs = ['jpeg']
