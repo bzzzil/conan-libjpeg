@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/mathieu/conan-libjpeg.svg)](https://travis-ci.org/mathieu/conan-libjpeg)
+[![Build Status](https://travis-ci.org/bzzzil/conan-libjpeg.svg)](https://travis-ci.org/bzzzil/conan-libjpeg)
 
 conan-libjpeg
 =============
