@@ -74,7 +74,6 @@ class libjpegConan(ConanFile):
             self.copy(pattern="libjpegd.lib", dst="lib", src="build/lib", keep_path=False)
             self.copy(pattern="libjpeg.lib", dst="lib", src="build/lib", keep_path=False)
         else:
-            print(self)
             self.copy(pattern="*.a", dst="lib", src="%s/.libs" % self.LIBJPEG_FOLDER_NAME, keep_path=False)
 
     def package_info(self):

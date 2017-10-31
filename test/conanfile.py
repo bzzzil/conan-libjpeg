@@ -8,7 +8,7 @@ class DefaultNameConan(ConanFile):
     version = "8c"
     settings = "os", "compiler", "arch", "build_type"
     generators = "cmake"
-    requires = "libjpeg/8.3@mathieu/stable"
+    requires = "libjpeg/8.3@bzzzil/testing"
 
     def build(self):
         cmake = CMake(self)
@@ -20,4 +20,4 @@ class DefaultNameConan(ConanFile):
         self.copy(pattern="*.dylib", dst="bin", src="lib")
 
     def test(self):
-        self.run("cd bin && .%srdjpgcom" % os.sep)
+        self.run("cd bin && .%srdjpgcom -verbose -raw ../../../testimg.jpg" % os.sep)
