@@ -2,8 +2,7 @@ env:
    global:
      - CONAN_REFERENCE: "libjpeg/8.3"
      - CONAN_USERNAME: "conan"
-     - CONAN_LOGIN_USERNAME: "bzzzil"
-     - CONAN_CHANNEL: "stable"
+     - CONAN_CHANNEL: "testing"
      - CONAN_STABLE_BRANCH_PATTERN: "release/*"
      - CONAN_UPLOAD: "https://api.bintray.com/conan/conan-community/conan"
      - CONAN_UPLOAD_ONLY_WHEN_STABLE: 1 # Will only upload when the branch matches "release/*"
@@ -31,7 +30,7 @@ matrix:
 
 install:
   - sudo apt-get update -qq
-  - sudo apt-get install gcc-multilib python-pip cmake
+  - sudo apt-get install python-pip cmake
   - sudo pip install conan conan_package_tools
 script:
   - python build.py
