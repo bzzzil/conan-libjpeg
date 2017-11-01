@@ -1,7 +1,6 @@
 env:
    global:
      - CONAN_REFERENCE: "libjpeg/8.3"
-     - CONAN_USERNAME: "conan"
      - CONAN_CHANNEL: "testing"
      #- CONAN_STABLE_BRANCH_PATTERN: "release/*"
      - CONAN_UPLOAD: "https://api.bintray.com/conan/bzzzil/conan"
