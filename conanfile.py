@@ -6,6 +6,7 @@ from conans.util import files
 
 class libjpegConan(ConanFile):
     name = "libjpeg"
+    description = "Libjpeg is a widely used C library for reading and writing JPEG image files. It was developed by Tom Lane and the Independent JPEG Group (IJG) during the 1990's and it is now maintained by several developers using various services identified in the SourceForge summary."
     version = "8.3"
     # JPEG minor versions are letters, so 8c -> 8.3
     version_internal = "8c"
@@ -13,7 +14,7 @@ class libjpegConan(ConanFile):
     settings = "os", "arch", "compiler", "build_type"
     options = {"shared": [True, False]}
     default_options = "shared=False"
-    license = "Open source: http://www.libpng.org/pub/png/src/libpng-LICENSE.txt"
+    license = "GNU General Public License version 2.0 (GPLv2): https://sourceforge.net/projects/libjpeg/"
     exports = "CMakeLists.txt", "libjpeg/*"
     url="http://github.com/bzzzil/conan-libjpeg"
 
@@ -22,7 +23,7 @@ class libjpegConan(ConanFile):
     download_url = "http://ijg.org/files/%s" % src_name
 
     def requirements(self):
-	pass
+        pass
 
     def config_options(self):
         if self.settings.os == "Windows":
