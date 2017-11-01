@@ -7,7 +7,7 @@ from conans.util import files
 class libjpegConan(ConanFile):
     name = "libjpeg"
     description = "Libjpeg is a widely used C library for reading and writing JPEG image files. It was developed by Tom Lane and the Independent JPEG Group (IJG) during the 1990's and it is now maintained by several developers using various services identified in the SourceForge summary."
-    version = "9b"
+    version = "8c"
     generators = "cmake"
     settings = "os", "arch", "compiler", "build_type"
     options = {"shared": [True, False]}

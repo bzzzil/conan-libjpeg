@@ -5,10 +5,10 @@ import os
 
 class DefaultNameConan(ConanFile):
     name = "DefaultName"
-    version = "9b"
+    version = "8c"
     settings = "os", "compiler", "arch", "build_type"
     generators = "cmake"
-    requires = "libjpeg/9b@bzzzil/stable"
+    requires = "libjpeg/8c@bzzzil/stable"
 
     def build(self):
         cmake = CMake(self)
