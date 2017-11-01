@@ -1,8 +1,33 @@
-language: c
-sudo: required
-compiler:
-  - gcc
-  - clang
+env:
+   global:
+     - CONAN_REFERENCE: "libjpeg/8.3"
+     - CONAN_USERNAME: "conan"
+     - CONAN_LOGIN_USERNAME: "bzzzil"
+     - CONAN_CHANNEL: "testing"
+#     - CONAN_UPLOAD: "https://api.bintray.com/conan/conan-community/conan"
+#     - CONAN_STABLE_BRANCH_PATTERN: "release/*"
+
+linux: &linux
+   os: linux
+   sudo: required
+   language: python
+   python: "3.6"
+   language: generic
+   services:
+     - docker
+matrix:
+   include:
+      - <<: *linux
+        env: CONAN_GCC_VERSIONS=4.9 CONAN_DOCKER_IMAGE=lasote/conangcc49
+      - <<: *linux
+        env: CONAN_GCC_VERSIONS=5.4 CONAN_DOCKER_IMAGE=lasote/conangcc54
+      - <<: *linux
+        env: CONAN_GCC_VERSIONS=6.3 CONAN_DOCKER_IMAGE=lasote/conangcc63
+      - <<: *linux
+        env: CONAN_CLANG_VERSIONS=3.9 CONAN_DOCKER_IMAGE=lasote/conanclang39
+      - <<: *linux
+        env: CONAN_CLANG_VERSIONS=4.0 CONAN_DOCKER_IMAGE=lasote/conanclang40
+
 install:
   - sudo apt-get update -qq
   - sudo apt-get install gcc-multilib python-pip cmake
