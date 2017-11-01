@@ -5,7 +5,7 @@ conan-libjpeg
 
 [Conan.io](https://conan.io) package for JPEG library
 
-The packages generated with this **conanfile** can be found in [conan.io](https://conan.io/source/libjpeg/8.3/mathieu/stable).
+The packages generated with this **conanfile** can be found in [conan.io](https://conan.io/source/libjpeg/8.3/bzzzil/stable).
 
 Build packages
 --------------
@@ -13,6 +13,7 @@ Build packages
 Download conan client from [Conan.io](https://conan.io) and run:
 
 ```
+$ pip install conan_package_tools
 $ python build.py
 ```
 
@@ -20,7 +21,7 @@ Upload packages to server
 -------------------------
 
 ```
-$ conan upload libjpeg/8.3@mathieu/stable --all
+$ conan upload libjpeg/8.3@bzzzil/stable --all
 ```
 
 Reuse the packages
@@ -29,7 +30,7 @@ Reuse the packages
 ### Basic setup
 
 ```
-$ conan install libjpeg/8.3@mathieu/stable
+$ conan install libjpeg/8.3@bzzzil/stable
 ```
 
 ### Project setup
@@ -38,7 +39,7 @@ If you handle multiple dependencies in your project is better to add a *conanfil
 
 ```
 [requires]
-libjpeg/8.3@mathieu/stable
+libjpeg/8.3@bzzzil/stable
 
 [options]
 libjpeg:shared=true # false
