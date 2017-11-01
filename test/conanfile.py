@@ -8,7 +8,7 @@ class DefaultNameConan(ConanFile):
     version = "8c"
     settings = "os", "compiler", "arch", "build_type"
     generators = "cmake"
-    requires = "libjpeg/8.3@bzzzil/testing"
+    requires = "libjpeg/8.3@bzzzil/stable"
 
     def build(self):
         cmake = CMake(self)
