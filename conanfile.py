@@ -7,7 +7,8 @@ from conans.util import files
 class libjpegConan(ConanFile):
     name = "libjpeg"
     version = "8.3"
-    LIBJPEG_FOLDER_NAME = "jpeg-8c"
+    # JPEG minor versions are letters, so 8c -> 8.3
+    version_internal = "8c"
     generators = "cmake"
     settings = "os", "arch", "compiler", "build_type"
     options = {"shared": [True, False]}
@@ -16,8 +17,12 @@ class libjpegConan(ConanFile):
     exports = "CMakeLists.txt", "libjpeg/*"
     url="http://github.com/bzzzil/conan-libjpeg"
 
+    LIBJPEG_FOLDER_NAME = "jpeg-%s" % version_internal
+    src_name = "jpegsr%s.zip" % version_internal
+    download_url = "http://ijg.org/files/%s" % src_name
+
     def requirements(self):
-        self.requires.add("zlib/1.2.8@lasote/stable")
+	pass
 
     def config_options(self):
         if self.settings.os == "Windows":
@@ -33,11 +38,11 @@ class libjpegConan(ConanFile):
             os.unlink("./%s_win" % filename)
 
     def source(self):
-        src_name = "jpegsr8c.zip"
-        tools.download("http://ijg.org/files/%s" % src_name, src_name)
-        tools.unzip(src_name)
-        os.unlink(src_name)
+        tools.download(self.download_url, self.src_name)
+        tools.unzip(self.src_name)
+        #os.unlink(self.src_name)
         if self.settings.os != "Windows":
+            # Remove Windows-like line endings (CRLF) from build scripts
             for filename in ["configure", "aclocal.m4", "configure.ac", "Makefile.am", "config.sub", "ltmain.sh", "Makefile.in", "depcomp", "config.guess", "missing"]:
                 self.remove_crlf(filename)
             self.run("chmod +x ./%s/configure" % self.LIBJPEG_FOLDER_NAME)
@@ -71,7 +76,7 @@ class libjpegConan(ConanFile):
         """ Define your conan structure: headers, libs, bins and data. After building your
             project, this method is called to create a defined structure:
         """
-        # Copying libjpeg.h, zutil.h, zconf.h
+        # Copying header files
         self.copy("*.h", "include", "%s" % (self.LIBJPEG_FOLDER_NAME), keep_path=False)
         self.copy("*.h", "include", "%s" % ("_build"), keep_path=False)
 
